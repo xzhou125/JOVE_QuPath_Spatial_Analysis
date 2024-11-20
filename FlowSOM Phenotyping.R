@@ -13,7 +13,7 @@ library(pheatmap)
 # Set working directory and define list of PhenoCycler panel lineage markers (i.e., markers for clustering)
 setwd("...")
 data_path = getwd()
-marker_list <- c("SOX10", "CD45", "CD3", "CD4", "CD8", "FOXP3", "CD20", "CD11C", "F4/80", "CD68", "CD86", "CD163", "CD206", "NK1.1", "CD31")
+marker_list <- c("SOX10", "CD45", "CD3", "CD4", "CD8", "FOXP3", "CD11C", "F4/80", "CD68", "CD86", "CD163", "CD206", "NK1.1", "CD31")
 
 # Function to import csv files
 ReadCSV <- function(file) {
