@@ -28,9 +28,9 @@ for (def line in lines) {
         println "WARN: ${cell.size()} cells for $id - will skip"
         continue
     }
-    // Pull labels from appropriate headings in phenotyped csv file
+    // Pull labels from appropriate headings in phenotyped csv file; in particular, make note of whether the label is "Phenotype" or "phenotype" in the csv file
     cell[0].name = [map['cluster']]
-    cell[0].classifications = [map['phenotype']]
+    cell[0].classifications = [map['Phenotype']]
 }
 
 // Helper function to create a map from column headings -> values
