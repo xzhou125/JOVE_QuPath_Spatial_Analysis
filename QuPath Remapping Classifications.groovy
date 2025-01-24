@@ -3,7 +3,6 @@
 
 // Path to CSV file
 def path = "..."
-// Ensure that datapath uses backslash (\) instead of forwardslash (/)
 
 // Color separator
 def delim = ","
