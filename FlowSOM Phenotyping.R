@@ -104,42 +104,24 @@ write.csv(data_output, filename, row.names = FALSE)
 # To preserve FlowSOM cluster assignments for subsequent phenotyping runs, load csv file containing cluster information
 # data_cluster = ReadCSV(paste0(data_path, "/With FlowSOM Clusters.csv"))
 
-# Assign a Phenotype column to the dataframe
-data_cluster = data_output
-data_cluster$Phenotype = "Remove"
-
 # Assign clusters to phenotypes (consult heatmap generated from FlowSOM)
-for(row in 1:nrow(data_cluster)){
-  cluster <- data_cluster$cluster[row]
-  if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "Tumor Cells"
-  } else if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "CD4 T Cells"
-  } else if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "CD8 T Cells"
-  } else if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "Tregs"
-  } else if(cluster == 3 | cluster == 22) {
-    data_cluster$Phenotype[row] = "Other T Cells"
-  } else if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "M1 Macrophages"
-  } else if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "M2 Macrophages"
-  } else if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "Other Macrophages"
-  } else if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "Dendritic Cells"
-  } else if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "NK Cells"
-  } else if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "Endothelial Cells"
-  } else if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "Other Immune"
-  } else if(cluster == 0 | cluster == 0) {
-    data_cluster$Phenotype[row] = "Remove"
-  }
-}
+# Multiple conditions can be included with "|" (e.g., cluster == 1 | cluster == 2 | ...)
+phen = data_cluster %>%
+  mutate(Phenotype = case_when((cluster == )~ "Tumor",
+                               (cluster == )~ "CD4 T Cells",
+                               (cluster == )~ "CD8 T Cells",
+                               (cluster == )~ "Tregs",
+                               (cluster == )~ "Other T Cells",
+                               (cluster == )~ "M1 Macrophages",
+                               (cluster == )~ "M2 Macrophages",
+                               (cluster == )~ "Other Macrophages",
+                               (cluster == )~ "Dendritic Cells",
+                               (cluster == )~ "NK Cells",
+                               (cluster == )~ "Endothelial Cells",
+                               (cluster == )~ "Other Immune",
+                               (cluster == )~ "Remove",
+                               TRUE ~ "other"))
 
 # Export phenotype results in csv
 filename <- paste0(data_path, "/FlowSOM Phenotyping.csv")
-write.csv(data_cluster, filename, row.names = FALSE)
+write.csv(phen, filename, row.names = FALSE)
